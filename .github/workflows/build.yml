@@ -1,0 +1,33 @@
+name: Build Windows app
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official Android Platform Tools
+        shell: pwsh
+        run: Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile "$env:RUNNER_TEMP\platform-tools.zip"
+      - name: Build, test and package
+        shell: powershell
+        run: .\build.ps1 -Test -Package -PlatformToolsZip "$env:RUNNER_TEMP\platform-tools.zip"
+      - name: Upload portable app
+        uses: actions/upload-artifact@v4
+        with:
+          name: SamsungUsbInstaller-Windows-x64
+          path: dist/SamsungUsbInstaller-Windows-x64.zip
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-evidence
+          path: |
+            build/test-results.txt
+            build/previews/*.png
+            build/previews/ui-checks.txt
