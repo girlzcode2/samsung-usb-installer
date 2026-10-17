@@ -1,0 +1,98 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Samsung USB Installer" Width="1040" Height="790" MinWidth="920" MinHeight="730"
+        WindowStartupLocation="CenterScreen" Background="#F5F7FB" FontFamily="Segoe UI" Foreground="#162239">
+  <Window.Resources>
+    <SolidColorBrush x:Key="Muted" Color="#64748B"/>
+    <Style TargetType="Button">
+      <Setter Property="Cursor" Value="Hand"/><Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Padding" Value="18,12"/>
+      <Setter Property="Background" Value="White"/><Setter Property="Foreground" Value="#21334F"/>
+      <Setter Property="BorderBrush" Value="#D8E1EE"/><Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+        <Border x:Name="ButtonBorder" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+          <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <ControlTemplate.Triggers>
+          <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonBorder" Property="Opacity" Value="0.85"/></Trigger>
+          <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#37B6EF"/><Setter TargetName="ButtonBorder" Property="BorderThickness" Value="2"/></Trigger>
+          <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/></Trigger>
+        </ControlTemplate.Triggers>
+      </ControlTemplate></Setter.Value></Setter>
+    </Style>
+  </Window.Resources>
+  <ScrollViewer Background="#F5F7FB" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid x:Name="Root" Margin="32,26,32,20">
+      <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <Grid Margin="0,0,0,26">
+        <StackPanel Orientation="Horizontal">
+          <Border Width="44" Height="44" Background="#245AE8" CornerRadius="13" Margin="0,0,12,0">
+            <TextBlock Text="↓" Foreground="White" FontSize="29" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"/>
+          </Border>
+          <StackPanel VerticalAlignment="Center"><TextBlock Text="Samsung USB Installer" FontSize="22" FontWeight="SemiBold"/><TextBlock Text="Your Android apps. A simple cable connection." Foreground="{StaticResource Muted}" FontSize="12" Margin="0,3,0,0"/></StackPanel>
+        </StackPanel>
+        <Button x:Name="HelpButton" Content="Connection help" HorizontalAlignment="Right" VerticalAlignment="Center" AutomationProperties.Name="Open USB connection help"/>
+      </Grid>
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="1.04*"/><ColumnDefinition Width="24"/><ColumnDefinition Width="1*"/></Grid.ColumnDefinitions>
+        <Border CornerRadius="20" Padding="26,23" MinHeight="440">
+          <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#102A5C" Offset="0"/><GradientStop Color="#1D488A" Offset="1"/></LinearGradientBrush></Border.Background>
+          <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="250"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <Border HorizontalAlignment="Left" Background="#304D7B" CornerRadius="15" Padding="11,6"><StackPanel Orientation="Horizontal"><Ellipse x:Name="StatusDot" Width="7" Height="7" Fill="#FBBF66" Margin="0,0,7,0"/><TextBlock x:Name="StatusPill" Text="WAITING FOR USB" FontSize="10" FontWeight="Bold" Foreground="#E2EBFF"/></StackPanel></Border>
+            <Viewbox Grid.Row="1" Stretch="Uniform" Margin="0,6,0,0" IsHitTestVisible="False" AutomationProperties.Name="Illustration of a Samsung phone with a USB cable plugged in">
+              <Canvas Width="300" Height="245">
+                <Ellipse Width="206" Height="206" Fill="#244D86" Canvas.Left="47" Canvas.Top="7"/>
+                <Ellipse Width="173" Height="173" Stroke="#41679B" StrokeThickness="1" Canvas.Left="63" Canvas.Top="24"/>
+                <Path Data="M 150,183 L 150,211 C 150,235 210,235 210,213 L 210,205" Stroke="#A6C6F3" StrokeThickness="7" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                <Rectangle Width="16" Height="18" RadiusX="3" RadiusY="3" Fill="#D7E7FF" Canvas.Left="202" Canvas.Top="190"/>
+                <Rectangle Width="10" Height="8" Fill="#88A5D3" Canvas.Left="205" Canvas.Top="183"/>
+                <Rectangle Width="107" Height="183" RadiusX="20" RadiusY="20" Fill="#09162D" Stroke="#8CAEDC" StrokeThickness="2" Canvas.Left="96" Canvas.Top="6"/>
+                <Rectangle Width="95" Height="170" RadiusX="15" RadiusY="15" Canvas.Left="102" Canvas.Top="12"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#2463E8" Offset="0"/><GradientStop Color="#62D6DA" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle>
+                <Ellipse Width="6" Height="6" Fill="#12315E" Canvas.Left="147" Canvas.Top="19"/>
+                <TextBlock Text="SAMSUNG" Foreground="#E7F6FF" FontSize="9" FontWeight="SemiBold" Canvas.Left="126" Canvas.Top="42"/>
+                <Border Width="50" Height="50" Background="#EEF9FF" CornerRadius="14" Canvas.Left="125" Canvas.Top="74"><TextBlock x:Name="PhoneSymbol" Text="↓" FontSize="34" Foreground="#2161C5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,0"/></Border>
+                <Rectangle Width="28" Height="3" Fill="#C0EFFA" RadiusX="2" RadiusY="2" Canvas.Left="136" Canvas.Top="166"/>
+                <Rectangle Width="14" Height="18" RadiusX="3" RadiusY="3" Fill="#E2EDFC" Canvas.Left="143" Canvas.Top="180"/>
+                <Rectangle Width="3" Height="22" RadiusX="1" RadiusY="1" Fill="#AFC4E3" Canvas.Left="203" Canvas.Top="49"/>
+              </Canvas>
+            </Viewbox>
+            <TextBlock x:Name="ConnectionTitle" Grid.Row="2" Text="Please connect device" Foreground="White" FontSize="25" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,0,0,9"/>
+            <TextBlock x:Name="ConnectionHint" Grid.Row="3" Text="Connect your Samsung with a USB data cable. Unlock it and allow USB debugging." Foreground="#C6D9F4" FontSize="13" LineHeight="20" TextWrapping="Wrap"/>
+          </Grid>
+        </Border>
+        <Border Grid.Column="2" Background="White" BorderBrush="#E1E7F0" BorderThickness="1" CornerRadius="20" Padding="26,26,26,22">
+          <StackPanel>
+            <TextBlock Text="INSTALL AN APP" FontSize="10" Foreground="#3362CC" FontWeight="Bold"/>
+            <TextBlock Text="From PC to phone" FontSize="25" FontWeight="SemiBold" Margin="0,8,0,8"/>
+            <TextBlock Text="Choose an Android APK from your computer, then send it to your connected phone." Foreground="{StaticResource Muted}" FontSize="13" LineHeight="20" TextWrapping="Wrap"/>
+            <Border x:Name="FileDrop" AllowDrop="True" Background="#F7F9FD" BorderBrush="#DCE4F1" BorderThickness="1" CornerRadius="12" Padding="17" Margin="0,21,0,15">
+              <StackPanel>
+                <TextBlock x:Name="FileName" Text="No APK selected" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
+                <TextBlock x:Name="FileMeta" Text="Android .apk files only" Foreground="{StaticResource Muted}" FontSize="12" Margin="0,5,0,14" TextWrapping="Wrap"/>
+                <Button x:Name="ChooseButton" Content="Choose APK file" HorizontalAlignment="Left" Padding="15,9" IsEnabled="False"/>
+              </StackPanel>
+            </Border>
+            <CheckBox x:Name="UpdateCheck" Content="Allow app updates (keeps app data)" FontSize="12" Foreground="#42536E" IsChecked="True" Margin="0,0,0,18"/>
+            <Button x:Name="InstallButton" Content="Download onto mobile device" Background="#245AE8" Foreground="White" BorderBrush="#245AE8" Padding="12,14" IsEnabled="False"/>
+            <ProgressBar x:Name="Progress" Height="4" Margin="0,12,0,0" Foreground="#245AE8" Background="#E8EEF9" Visibility="Collapsed" IsIndeterminate="True"/>
+            <TextBlock x:Name="InstallStatus" Text="Connect your phone to get started." Foreground="{StaticResource Muted}" FontSize="12" LineHeight="18" TextWrapping="Wrap" Margin="0,14,0,0"/>
+          </StackPanel>
+        </Border>
+      </Grid>
+      <Border Grid.Row="2" CornerRadius="13" Background="#EAF0FB" Padding="20,16" Margin="0,20,0,14">
+        <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <StackPanel><TextBlock Text="01   CONNECT" FontWeight="Bold" FontSize="10" Foreground="#315BA7"/><TextBlock Text="Use a USB data cable" FontSize="12" Margin="0,5,0,0"/></StackPanel>
+          <StackPanel Grid.Column="1"><TextBlock Text="02   ALLOW" FontWeight="Bold" FontSize="10" Foreground="#315BA7"/><TextBlock Text="Approve debugging on your phone" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap"/></StackPanel>
+          <StackPanel Grid.Column="2"><TextBlock Text="03   INSTALL" FontWeight="Bold" FontSize="10" Foreground="#315BA7"/><TextBlock Text="Choose your APK and click download" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap"/></StackPanel>
+        </Grid>
+      </Border>
+      <Expander Grid.Row="3" Header="Details" FontSize="12" Foreground="#64748B">
+        <TextBox x:Name="Details" IsReadOnly="True" TextWrapping="Wrap" Height="110" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="11" Background="White" BorderBrush="#D8E1EE" Margin="0,8,0,8" Padding="10" AutomationProperties.Name="Connection and installation details"/>
+      </Expander>
+      <Grid Grid.Row="4" Margin="0,12,0,0">
+        <TextBlock Text="Windows runs this installer. Android installs the APK." FontSize="11" Foreground="{StaticResource Muted}" VerticalAlignment="Center"/>
+        <Button x:Name="RefreshButton" Content="Refresh connection" HorizontalAlignment="Right" FontSize="11" Padding="10,6" Background="Transparent" BorderThickness="0" Foreground="#315BA7"/>
+      </Grid>
+    </Grid>
+  </ScrollViewer>
+</Window>
