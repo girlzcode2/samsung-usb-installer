@@ -1,0 +1,7 @@
+build/
+dist/
+*.user
+*.suo
+*.zip
+startup-error.txt
+.vs/
